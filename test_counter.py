@@ -1,7 +1,7 @@
 """
 カウンターのテストスイート (`python -m unittest counter/test_counter.py`)。
 4つの実装それぞれの単体テストと、README 1章の外部仕様 (機能 F1〜F6) を
-4実装すべてが満たすことを確かめる契約テストからなります。
+4実装すべてが満たすことを確かめる契約テストを中心に、README の作例と main.py の検証を含みます。
 """
 from __future__ import annotations
 

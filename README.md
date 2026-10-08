@@ -600,7 +600,7 @@ flowchart LR
 ```
 
 ```python
-from pythonic_fp import counter_stream, step_transition
+from pythonic_fp import counter_stream
 
 # 入力の列から、状態の列を生成する
 inputs = ["", "", "50", "", "c"]
@@ -1139,7 +1139,7 @@ flowchart LR
 
 **考えてみよう**：4章の各部を思い出して違いを挙げてから、次の表を見てください。
 
-違いは、この式を **どのように実装したか** の3点にまとめられます。
+違いは、この式を **どのように実装したか** にあります。規則 `δ` の置き場所に加えて、特に「今の数の置き場所」「ループを回す係」「副作用の置き場所」の3点が異なります。
 
 | 実装 | `δ`（遷移の規則）はどこか | 今の数 `count[n]` の置き場所 | ループを回す係 | 副作用（`print` / `input`）の置き場所 |
 | :--- | :--- | :--- | :--- | :--- |
@@ -1282,10 +1282,12 @@ python counter/main.py --help
 python -m unittest counter/test_counter.py
 ```
 
-テストスイートは次の3種類で構成されています。
+テストスイートは次の5種類で構成されています。
 
 | 種類 | 内容 |
 | :--- | :--- |
 | 各実装の単体テスト | 4実装それぞれの部品（第1部のループ、集約ルート、`step_transition`、モナドなど）の振る舞い |
 | 契約テスト（`TestUnifiedContract`） | 機能 F1〜F6 ごとのシナリオを4実装に流し、標準出力と入力の読み取り回数が仕様どおりであることを検証。すべての機能にシナリオがあることも検証 |
 | doctest | `pythonic_fp.py` と `monads.py` のドキュメント中のコード例が、実際にその通り動くことを検証 |
+| README の作例のテスト（`TestReadmeExercises` など） | 第1部に示した `simple.py` の全文が実装と一致すること、第1部・第2部の `count_from` の作例が変更依頼 R1 を満たすことを検証 |
+| エントリーポイントのテスト（`TestMainEntryPoint`） | `main.py` のフラグで実装が切り替わること、同時指定や未知のフラグを拒否することを検証 |
